@@ -14,24 +14,4 @@ jobs:
     
     steps:
       - uses: myfin-tracker/application/.github/workflows/depolyment.yml@main
-        
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOYMENT_HOST_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          
-      - name: Add server to known_hosts
-        run: |
-          ssh-keyscan -H ${{ secrets.DEPLOYMENT_HOST_IP }} >> ~/.ssh/known_hosts
-          
-      - name: Copy files to Azure server
-        run: |
-          scp -r * ${{ secrets.DEPLOYMENT_HOST_USERNAME }}@${{ secrets.DEPLOYMENT_HOST_IP }}:/home/${{ secrets.DEPLOYMENT_HOST_USERNAME }}/
-          
-      - name: Load Docker images and deploy with Docker Compose on Azure VM
-        run: |
-          ssh -t ${{ secrets.DEPLOYMENT_HOST_USERNAME }}@${{ secrets.DEPLOYMENT_HOST_IP }} << 'EOF'
-            COMPOSE_EXPERIMENTAL_GIT_REMOTE=true docker compose up --build -d
-          EOF
-          
+  

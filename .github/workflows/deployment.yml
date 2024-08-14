@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
+      - uses: myfin-tracker/application/.github/workflows/depolyment.yml@main
         
       - name: Set up SSH key
         run: |

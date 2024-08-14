@@ -10,8 +10,4 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: myfin-tracker/application/.github/workflows/depolyment.yml@main
-  
+    uses: myfin-tracker/application/.github/workflows/depolyment.yml@main
